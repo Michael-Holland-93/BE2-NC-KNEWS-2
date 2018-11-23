@@ -1,0 +1,1 @@
+CREATE DATABASE development_nc_news;
