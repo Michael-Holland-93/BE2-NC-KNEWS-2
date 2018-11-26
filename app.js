@@ -7,6 +7,10 @@ const { handle400s, handle404s, handle500s } = require('./errors');
 
 app.use(bodyParser.json());
 
+// app.use(bodyParser.urlencoded({
+//   entended: true,
+// }));
+
 app.use('/api', apiRouter);
 
 app.use('/*', (req, res, next) => {
