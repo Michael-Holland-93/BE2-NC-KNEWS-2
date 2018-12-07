@@ -17,13 +17,13 @@ app.use('/*', (req, res, next) => {
   next({ status: 404, message: 'page not found' });
 });
 
-
-app.use((err, req, res, next) => {
-  res.status(err.status || 500).send({ message: err.message || 'Internal Server Error' });
-});
-
 app.use(handle400s);
 app.use(handle404s);
 app.use(handle500s);
+
+app.use((err, req, res, next) => {
+  console.log(err);
+  res.status(err.status || 500).send({ message: err.message || 'Internal Server Error' });
+});
 
 module.exports = app;

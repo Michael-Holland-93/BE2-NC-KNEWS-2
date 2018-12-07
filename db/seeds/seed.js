@@ -1,6 +1,6 @@
 const {
   topicData, userData, articleData, commentData,
-} = require('../data/development-data');
+} = require('../data/index');
 
 exports.seed = function (knex, Promise) {
   return knex('topics').del()

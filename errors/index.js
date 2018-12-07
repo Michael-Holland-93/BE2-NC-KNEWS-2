@@ -13,12 +13,11 @@ exports.handle400s = (err, req, res, next) => {
 
 exports.handle404s = (err, req, res, next) => {
   if (err instanceof QueryResultError && err.code === noData) {
-    res.status(err.status || 404).send(err.msg || 'page not found');
+    res.status(err.status || 404).send(err.message || 'page not found');
   }
   next(err);
 };
 
 exports.handle500s = (err, req, res, next) => {
-  console.log(err);
-  res.status(err.status || 500).send(err.msg || 'internal server error');
+  res.status(err.status || 500).send(err.message || 'internal server error');
 };
