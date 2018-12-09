@@ -1,8 +1,3 @@
-const pgp = require('pg-promise');
-
-const { QueryResultError } = pgp.errors;
-const { noData } = pgp.errors.queryResultErrorCode;
-
 exports.handle400s = (err, req, res, next) => {
   const errorCodes = ['42703', '22P02', '23502'];
   if (errorCodes.includes(err.code)) {
@@ -12,9 +7,10 @@ exports.handle400s = (err, req, res, next) => {
 };
 
 exports.handle404s = (err, req, res, next) => {
-  if (err instanceof QueryResultError && err.code === noData) {
-    res.status(err.status || 404).send(err.message || 'page not found');
-  }
+  // if (err instanceof QueryResultError && err.code === noData) {
+  //   return res.status(err.status || 404).send(err.message || 'page not found');
+  // }
+  // do the error codes as above
   next(err);
 };
 

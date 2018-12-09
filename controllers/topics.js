@@ -12,7 +12,7 @@ exports.getTopics = (req, res, next) => {
 
 exports.addTopic = (req, res, next) => {
   db.insert(req.body).returning('*').into('topics').then((topic) => {
-    res.status(201).send({ topic });
+    res.status(201).send({ topic: topic[0] });
   })
     .catch(next);
 };
@@ -51,7 +51,7 @@ exports.addTopicByArticle_Id = (req, res, next) => {
     .returning('*')
     .into('articles')
     .then((article) => {
-      res.status(201).send({ article });
+      res.status(201).send({ article: article[0] });
     })
     .catch(next);
 };

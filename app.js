@@ -7,10 +7,6 @@ const { handle400s, handle404s, handle500s } = require('./errors');
 
 app.use(bodyParser.json());
 
-// app.use(bodyParser.urlencoded({
-//   entended: true,
-// }));
-
 app.use('/api', apiRouter);
 
 app.use('/*', (req, res, next) => {
@@ -20,10 +16,5 @@ app.use('/*', (req, res, next) => {
 app.use(handle400s);
 app.use(handle404s);
 app.use(handle500s);
-
-app.use((err, req, res, next) => {
-  console.log(err);
-  res.status(err.status || 500).send({ message: err.message || 'Internal Server Error' });
-});
 
 module.exports = app;

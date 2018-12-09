@@ -8,9 +8,12 @@ exports.getUsers = (req, res, next) => {
     .catch(next);
 };
 
-exports.addUser = (req, res, next) => {
-  db.insert(req.body).returning('*').into('users').then((user) => {
-    res.status(201).send({ user });
-  })
+exports.getUserByUsername = (req, res, next) => {
+  const { username } = req.params;
+  db.select('*').from('users')
+    .where('username', username)
+    .then((user) => {
+      res.status(200).send({ user: user[0] });
+    })
     .catch(next);
 };
