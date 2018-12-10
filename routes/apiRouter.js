@@ -5,7 +5,7 @@ const topicsRouter = require('./topicsRouter');
 const usersRouter = require('./usersRouter');
 const articlesRouter = require('./articlesRouter');
 
-apiRouter.use('/api', getRoutes);
+apiRouter.route('/api').get(getRoutes);
 apiRouter.use('/topics', topicsRouter);
 apiRouter.use('/users', usersRouter);
 apiRouter.use('/articles', articlesRouter);
