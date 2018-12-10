@@ -146,10 +146,9 @@ exports.updateCommentByComment_Id = (req, res, next) => {
 };
 
 exports.deleteCommentByComment_Id = (req, res, next) => {
-  const { article_Id, comment_Id } = req.params;
   db('comments')
-    .where('comments.article_id', article_Id)
-    .where('comments.comment_id', comment_Id)
+    .where('comments.article_id', req.params.article_id)
+    .where('comments.comment_id', req.params.comment_id)
     .del()
     .then((deleteCount) => {
       console.log(deleteCount);
