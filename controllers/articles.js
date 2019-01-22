@@ -6,7 +6,7 @@ exports.getArticles = (req, res, next) => {
   } = req.query;
   let sort_order = 'desc';
   if (sort_ascending === 'true') sort_order = 'asc';
-  db.select('users.username', 'title', 'articles.article_id', 'articles.votes', 'articles.created_at', 'topic')
+  db.select('users.username', 'title', 'articles.article_id', 'articles.votes', 'articles.created_at', 'topic', 'articles.body')
     .from('articles')
     .join('users', 'users.user_id', 'articles.user_id')
     .join('topics', 'topics.slug', 'articles.topic')
@@ -44,7 +44,7 @@ exports.getArticlesByArticle_id = (req, res, next) => {
   } = req.query;
   let sort_order = 'desc';
   if (sort_ascending === 'true') sort_order = 'asc';
-  db.select('articles.article_id', 'users.username', 'title', 'articles.votes', 'articles.created_at', 'topic')
+  db.select('articles.article_id', 'users.username', 'title', 'articles.votes', 'articles.created_at', 'topic', 'articles.body')
     .from('articles')
     .where('articles.article_id', `${article_id}`)
     .join('users', 'users.user_id', 'articles.user_id')
